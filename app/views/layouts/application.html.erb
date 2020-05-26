@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+      <div class="navbar-header">
+       <h4>Bookers</h4>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomin fadein fadeinUp fadein">
+       <% if user_signed_in? %>
+          <li class="">
+        <%= link_to "Home", user_path(current_user), class:"glyphicon glyphicon-home" %>
+          </li>
+          <li class="">
+            <%=  link_to "Users", users_path, class:"glyphicon glyphicon-user" %>
+          </li>
+          <li>
+            <%= link_to "Books", books_path, class:"glyphicon glyphicon-book" %>
+         </li>
+       <li class="">
+          <%= link_to "logout", destroy_user_session_path, method: :delete, class:"glyphicon glyphicon-log-out" %>
+       </li>
+       <% else %>
+          <li class="">
+        <!-- viewのところでログアウトじの分岐表示？ -->
+            <%= link_to "Home", root_path, class:"glyphicon glyphicon-home" %>
+         </li>
+         <li class="" >
+        <!-- welcomoto page -->
+           <%= link_to "About", home_about_path, class:"glyphicon glyphicon-link" %>
+         </li>
+          <li class="">
+           <%= link_to "sign up", new_user_registration_path, class:"glyphicon glyphicon-edit" %>
+         </li>
+          <li class="">
+           <%= link_to "login", new_user_session_path, class:"glyphicon glyphicon-log-in" %>
+         </li>
+         <% end %>
+        </ul>
+      </div>
+     </nav>
+   </header>
+    <% flash.each do |key, value| %>
+    <%= value %>
+    <% end %>
+   <%= yield %>
+   </body>
+   <footer>
+    <div class="col-xs-offset-7 col-xs-3">
+      <p>CopyRight Infratop.inc</p>
+    </div>
+  </footer>
+</html>

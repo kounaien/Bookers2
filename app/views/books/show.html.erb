@@ -1,0 +1,24 @@
+<!-- 部分テンプレート使用 -->
+<%= render 'users/ulist' %>
+<div class="col-xs-9">
+	<table class="table table-hover">
+		<h2>Book detail</h2>
+		<thead>
+			<tr>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><span><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" %></span></td>
+				<td><span><%= link_to @book.title, book_path(@book) %></span></td>
+				<td><span><%= link_to @book.body %></span></td>
+				<% if @user.id == current_user.id %>
+				<td><span><%= link_to 'Edit', edit_book_path(@book), class:"btn btn-success" %></span></td>
+				<td><span><%= link_to 'Destroy', book_path(@book), class:"btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %></span></td>
+				<% end %>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</div>
+</div>

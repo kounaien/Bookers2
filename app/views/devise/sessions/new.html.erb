@@ -1,0 +1,22 @@
+<div class="form-body">
+  <div class="row">
+    <div class="col-xs-offset-1 col-xs-3">
+      <h2>Log in</h2>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group has-icon">
+          <p>Name</p>
+          <label class="control-label sr-only" for="inputname">Name</label>
+           <%= f.text_field :name, class:"form-control", id:"inputname", placeholder:"ユーザネーム" %>
+            <span class="fa fa-envelope form-control-icon" aria-hidden="true"></span>
+        </div>
+        <div class="form-group has-icon">
+          <p>Password</p>
+          <label class="control-label sr-only" for="inputPassword">Password</label>
+      <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword", placeholder:"パスワード" %>
+          <span class="fa fa-lock form-control-icon" aria-hidden="true"></span>
+        </div>
+        <%= f.submit "Log in", class:"btn btn-primary mt-20" %>
+        <% end %>
+    </div>
+  </div>
+</div>
