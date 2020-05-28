@@ -60,6 +60,7 @@ class BooksController < ApplicationController
 	end
 
 	protected
+	
 	def find_login_user
 		@user = User.find(current_user.id)
 	end
