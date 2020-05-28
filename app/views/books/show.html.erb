@@ -1,5 +1,16 @@
-<!-- 部分テンプレート使用 -->
-<%= render 'users/ulist' %>
+<% if @book.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= @book.errors.count %>errors occured</h2>
+		<ul>
+			<% @book.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<%= render 'users/ulist', { book: @book2, user: @user } %>
+
 <div class="col-xs-9">
 	<table class="table table-hover">
 		<h2>Book detail</h2>
@@ -9,10 +20,13 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><span><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" %></span></td>
+				<td><%= link_to user_path(@user2) do %>
+					<span><%= attachment_image_tag @user2, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" %></span>
+					<%= @user2.name %><% end %>
+				</td>
 				<td><span><%= link_to @book.title, book_path(@book) %></span></td>
 				<td><span><%= link_to @book.body %></span></td>
-				<% if @user.id == current_user.id %>
+				<% if @user2 == current_user %>
 				<td><span><%= link_to 'Edit', edit_book_path(@book), class:"btn btn-success" %></span></td>
 				<td><span><%= link_to 'Destroy', book_path(@book), class:"btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %></span></td>
 				<% end %>

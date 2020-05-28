@@ -1,17 +1,12 @@
 class BooksController < ApplicationController
-
 	before_action :authenticate_user!, only: [:index, :show, :create, :edit, :update, :destroy]
+	before_action :find_login_user, only: [:index ]
 
 	def top
-		if user_signed_in?
-			redirect_to books_path
-		end
 	end
 
 	def about
-		
 	end
-
 
 	def index
 		@book = Book.new
@@ -19,9 +14,10 @@ class BooksController < ApplicationController
 	end
 
 	def show
-		@book = Book.new
+
+		@book2 = Book.new
 		@book = Book.find(params[:id])
-		@user = User.find(@book.user_id)
+		@user2 = @book.user
 	end
 
 	def create
@@ -38,6 +34,11 @@ class BooksController < ApplicationController
 
 	def edit
 		@book = Book.find(params[:id])
+		if @book.user_id == current_user.id
+			render action: :edit
+		else
+		redirect_to books_path
+	end
 	end
 
 	def update
@@ -57,6 +58,12 @@ class BooksController < ApplicationController
 		flash[:notice] = "Book was successfully destroyed"
 		redirect_to books_path
 	end
+
+	protected
+	def find_login_user
+		@user = User.find(current_user.id)
+	end
+
 
 
 	private
