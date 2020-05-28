@@ -16,7 +16,6 @@
 			<%= attachment_image_tag @user, :profile_image, :fill, 20, 20, class: "pull-left", fallback: "no_image.jpg" %>
 			<table class="table">
 				<tr>
-					<!-- なぜ名前 -->
 					<th>name</th>
 					<th><%= @user.name %></th>
 				</tr>
@@ -25,7 +24,6 @@
 					<th><%= @user.introduction %></th>
 				</tr>
 			</table>
-			<!-- アイコンツール？ -->
 			<% if @user == current_user %>
 				<%= link_to edit_user_path(current_user.id), class:"col-xs-12 btn btn-default btn-outline-dark" do %>
 			<span class="glyphicon glyphicon-wrench"></span>
