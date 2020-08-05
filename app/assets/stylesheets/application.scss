@@ -15,3 +15,24 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+
+.image1{
+    background-image: url(test5.jpg);
+}
+.image2{
+    background-image: url(test4.jpg);
+}
+.image3{
+    background-image: url(test3.jpg);
+}
+.image4{
+    background-image: url(test2.jpg);
+}
+.image5{
+    background-image: url(test1.jpg);
+}
+
+#container{
+    height: 500px;
+}
